@@ -1,5 +1,5 @@
 <template>
-  <div>CARRER</div>
+  <div>ABOUT</div>
 </template>
 
 <script setup></script>

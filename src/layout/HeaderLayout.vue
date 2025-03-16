@@ -5,21 +5,23 @@
         <nav>
           <div class="nav-bar">
             <div class="logo">
-              <a href=""><img src="../assets/logo.svg" /></a>
+              <router-link to="/"
+                ><img src="@/assets/logo.svg" alt="Logo"
+              /></router-link>
             </div>
             <div class="nav-list">
-              <div class="hamburger">
+              <div class="hamburger" @click="toggleMenu">
                 <div class="bar"></div>
               </div>
-              <ul class="nav-item">
-                <li><a href="./about.html">about</a></li>
-                <li><a href="./location.html">Location</a></li>
-                <li><a href="./careers.html">Careers</a></li>
-                <a class="btn" href="#">Get Scootin</a>
+              <ul :class="['nav-item', { active: isMenuOpen }]">
+                <li><router-link to="/about">About</router-link></li>
+                <li><router-link to="/location">Location</router-link></li>
+                <li><router-link to="/career">Careers</router-link></li>
+                <li><a class="btn" href="#">Get Scootin</a></li>
               </ul>
             </div>
             <div class="nav-btn">
-              <a class="btn" href="">Get Scootin</a>
+              <a class="btn" href="#">Get Scootin</a>
             </div>
           </div>
         </nav>
@@ -28,6 +30,26 @@
   </header>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { ref } from "vue";
 
-<style scoped></style>
+const isMenuOpen = ref(false);
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+};
+</script>
+
+<style scoped>
+.nav-item {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-item.active {
+  display: block;
+}
+
+.hamburger {
+  cursor: pointer;
+}
+</style>
